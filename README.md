@@ -45,10 +45,11 @@ Proyek sudah menetapkan preferred-install: dist. Pada Composer sebelum 2.10, keg
 composer self-update --stable
 composer --version
 php --ri zip
+php --ri fileinfo
 composer install --prefer-dist
 ~~~
 
-Pastikan versi Composer minimal 2.10 dan ekstensi ZIP aktif di PHP CLI. Jika Composer dikelola oleh installer atau package manager, perbarui melalui alat tersebut ketika self-update tidak tersedia. Perintah --prefer-dist mengesampingkan preferensi source dari konfigurasi global. Jangan mengaktifkan kembali source-fallback.
+Pastikan versi Composer minimal 2.10 dan ekstensi ZIP serta fileinfo aktif di PHP CLI. Jika Composer dikelola oleh installer atau package manager, perbarui melalui alat tersebut ketika self-update tidak tersedia. Perintah --prefer-dist mengesampingkan preferensi source dari konfigurasi global. Jangan mengaktifkan kembali source-fallback.
 
 Jika folder vendor hanya berisi hasil instalasi gagal dan tidak memiliki perubahan manual, hapus folder yang belum lengkap lalu ulangi:
 
