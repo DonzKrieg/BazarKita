@@ -48,7 +48,7 @@ Perubahan kecil pada frontend setelah integrasi dapat dilakukan untuk memperbaik
 
 **Selesai jika:** Navigasi dan komponen konsisten, dapat digunakan dengan keyboard dan tidak memakai istilah teknis pada layar UMKM.
 
-**Bukti T02:** [Hasil pemeriksaan menu dan komponen](../docs/task-02-validation.md), [panduan komponen](../docs/shared-components.md). Akses akun masih contoh; T03–T24 belum dinyatakan selesai.
+**Bukti T02:** [Hasil pemeriksaan menu dan komponen](../docs/task-02-validation.md), [panduan komponen](../docs/shared-components.md). Akses akun masih contoh; Status tugas berikutnya dicatat pada bagian masing-masing.
 
 
 ### Task 03 — Membuat tampilan akun
@@ -59,11 +59,13 @@ Perubahan kecil pada frontend setelah integrasi dapat dilakukan untuk memperbaik
 
 **Properti uji:** P01, P18
 
-- [ ] Buat Daftar, Masuk, Keluar dan pesan validasi sederhana; contohkan email salah, password salah dan percobaan masuk dibatasi.
-- [ ] Simulasikan pengguna keluar, pengguna masuk dan admin untuk perpindahan layar; beri label demonstrasi, tanpa menyimpan password atau mengaku sesi aman.
+- [x] Buat Daftar, Masuk, Keluar dan pesan validasi sederhana; contohkan email salah, password salah dan percobaan masuk dibatasi.
+- [x] Simulasikan pengguna keluar, pengguna masuk dan admin untuk perpindahan layar; beri label demonstrasi, tanpa menyimpan password atau mengaku sesi aman.
 
 **Selesai jika:** Semua alur tampilan akun dapat dicoba; keamanan dan sesi nyata belum dinyatakan selesai.
 
+
+**Bukti T03:** [Panduan dan hasil pemeriksaan akun contoh](../docs/task-03-validation.md). Autentikasi, pembatasan percobaan, dan sesi nyata tetap menunggu backend.
 
 ### Task 04 — Membuat form Usaha Saya
 

@@ -1,4 +1,7 @@
 import Alpine from 'alpinejs';
+import accountPreview from './account-preview';
+
+Alpine.data('accountPreview', accountPreview);
 
 Alpine.data('dialogPanel', () => ({
     trap(event) {

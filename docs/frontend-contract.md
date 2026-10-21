@@ -58,3 +58,7 @@ Keadaan layar dipilih melalui GET /?state=... Nilai di luar daftar menghasilkan 
 screen.persona berisi parameter tautan contoh: {} untuk guest, atau {as: user/admin}. Seluruh parameter as/state diperiksa terhadap daftar nilai yang diizinkan. Header dan tautan antarhalaman mempertahankan identitas tersebut. screen.profile pada Usaha Saya berisi fixture profil lengkap; bukan hasil baca database.
 
 Halaman Masuk menerima next berupa home/saved/profile saja. Pemilihan pengguna contoh melanjutkan ke nama route itu. Identitas tersebut bukan kredensial dan tidak boleh dipakai sebagai mekanisme otorisasi pada tahap backend. Lihat shared-components.md untuk kontrak komponen dan batas implementasi T02.
+
+## Akun contoh (T03)
+
+`/login` dan `/register` memakai form Alpine `accountPreview`, dengan tujuan `next` yang sama (home/saved/profile). Form tidak mengirim isian. Skenario lokal menentukan hasil berhasil, email duplikat, kata sandi salah, atau percobaan dibatasi. Password dikosongkan setelah submit; peran pengguna/admin tetap fixture dari parameter `as`. Lihat [panduan T03](task-03-validation.md) untuk langkah uji dan batas autentikasi.
