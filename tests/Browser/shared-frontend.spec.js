@@ -8,6 +8,7 @@ test('four menus preserve example identity and login destination', async ({ page
 
     await nav.getByRole('link', { name: 'Tersimpan', exact: true }).click();
     await expect(page).toHaveURL(/\/login\?next=saved$/);
+    await page.getByText('Navigasi contoh tanpa mengisi form', { exact: true }).click();
     await page.getByRole('link', { name: 'Coba sebagai pengguna', exact: true }).click();
     await expect(page).toHaveURL(/\/me\/saved-events\?as=user$/);
     await expect(page.getByText('Sudah berakhir', { exact: true })).toBeVisible();
@@ -31,6 +32,7 @@ test('four menus preserve example identity and login destination', async ({ page
     await expect(page.getByRole('link', { name: 'Masuk', exact: true })).toBeVisible();
     await nav.getByRole('link', { name: 'Usaha Saya', exact: true }).click();
     await expect(page).toHaveURL(/\/login\?next=profile$/);
+    await page.getByText('Navigasi contoh tanpa mengisi form', { exact: true }).click();
     await page.getByRole('link', { name: 'Coba sebagai pengguna', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Usaha Saya', exact: true })).toBeVisible();
 });

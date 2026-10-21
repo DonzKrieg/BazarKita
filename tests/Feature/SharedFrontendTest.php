@@ -40,6 +40,7 @@ class SharedFrontendTest extends TestCase
             ['/me/saved-events?as=user', 'Tersimpan'],
             ['/me/profile?as=user', 'Usaha Saya'],
             ['/login', 'Coba sebagai pengguna'],
+            ['/register', 'Daftar contoh'],
             ['/contoh/admin', 'Kelola Bazar'],
             ['/contoh/komponen', 'Panduan tampilan'],
         ];
@@ -53,6 +54,9 @@ class SharedFrontendTest extends TestCase
         $this->get('/login?next=profile')->assertSee(route('profile', ['as' => 'user']));
         $this->get('/login?next=https://example.com')->assertNotFound();
         $this->get('/login?next[]=home')->assertNotFound();
+        $this->get('/register?next=https://example.com')->assertNotFound();
+        $this->get('/register?next[]=home')->assertNotFound();
+        $this->get('/register?next=profile')->assertSee(route('login', ['next' => 'profile']));
         $this->get('/?as[]=admin')->assertNotFound();
         $this->get('/?as=owner')->assertNotFound();
     }
