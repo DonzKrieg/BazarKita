@@ -10,7 +10,8 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: mbstring, xml, curl, zip
+          extensions: mbstring, xml, curl, zip, fileinfo
+          tools: composer:2.10
           coverage: none
       - uses: actions/setup-node@v4
         with:
@@ -25,3 +26,25 @@ jobs:
       - run: vendor/bin/pint --test
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
+  windows-install:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, curl, zip, fileinfo
+          tools: composer:2.10
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist
+      - name: Verify distribution excludes upstream fixtures
+        shell: pwsh
+        run: |
+          if (Test-Path vendor/vlucas/phpdotenv/tests) {
+            throw 'phpdotenv must be installed from its distribution archive, without upstream test fixtures.'
+          }
+          if (-not (Test-Path vendor/autoload.php)) {
+            throw 'Composer installation is incomplete.'
+          }
+      - run: php artisan --version
+      - run: php artisan route:list --except-vendor
