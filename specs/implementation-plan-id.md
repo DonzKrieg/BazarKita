@@ -4,7 +4,7 @@ Rencana ini mengikuti Requirement dan Design Document revisi terbaru: bahasa sed
 
 Laravel dipasang sejak T01 dan seluruh halaman langsung dibuat dengan Blade, Tailwind CSS serta Alpine.js. Route tampilan dan controller sederhana untuk mengirim array contoh termasuk persiapan frontend. Pengerjaan tetap berurutan: **seluruh frontend Blade → backend fungsional → integrasi → pengujian akhir dan rilis**. Frontend mencakup semua halaman pengguna dan admin, seluruh interaksi, bahasa, responsif, serta keadaan memuat/kosong/gagal. Gunakan data contoh berlabel dan kontrak bentuk respons. Sebelum checkpoint T10 lulus, proyek hanya merender halaman dan interaksi contoh; database aplikasi, autentikasi nyata, aturan bisnis server, API bisnis, Apify dan AI belum dibangun.
 
-Rencana ini menggantikan penomoran task sebelumnya dengan T01–T24. R1–R15 dan AC mengacu ke requirements-id.md saat ini; P01–P20 mengacu ke design-id.md. Task frontend hanya menyelesaikan bagian tampilan/interaksi dari requirement yang dirujuk. Keamanan, penyimpanan, aturan server dan layanan nyata baru ditutup setelah backend dan integrasi diuji. Semua checklist masih merupakan rencana pekerjaan.
+Rencana ini menggantikan penomoran task sebelumnya dengan T01–T24. R1–R15 dan AC mengacu ke requirements-id.md saat ini; P01–P20 mengacu ke design-id.md. Task frontend hanya menyelesaikan bagian tampilan/interaksi dari requirement yang dirujuk. Keamanan, penyimpanan, aturan server dan layanan nyata baru ditutup setelah backend dan integrasi diuji. Checklist ditandai selesai hanya setelah implementasi dan pemeriksaan terkait memiliki bukti.
 
 | Tahap | Task | Syarat berpindah tahap |
 |---|---|---|
@@ -27,10 +27,12 @@ Perubahan kecil pada frontend setelah integrasi dapat dilakukan untuk memperbaik
 
 **Properti uji:** P18, P20
 
-- [ ] Pasang Laravel; siapkan Blade, Tailwind CSS dan Alpine.js, aset, layout/komponen di resources/views, serta route tampilan di routes/web.php. Gunakan controller sederhana hanya bila diperlukan untuk mengirim array contoh, tanpa database aplikasi atau API bisnis.
-- [ ] Siapkan data contoh berlabel untuk pengguna, admin, bazar, harga harian/paket, dan berbagai status; bentuk respons disepakati sebagai kontrak layar.
+- [x] Pasang Laravel; siapkan Blade, Tailwind CSS dan Alpine.js, aset, layout/komponen di resources/views, serta route tampilan di routes/web.php. Gunakan controller sederhana hanya bila diperlukan untuk mengirim array contoh, tanpa database aplikasi atau API bisnis.
+- [x] Siapkan data contoh berlabel untuk pengguna, admin, bazar, harga harian/paket, dan berbagai status; bentuk respons disepakati sebagai kontrak layar.
 
 **Selesai jika:** Halaman .blade.php dapat dibuka melalui Laravel dengan data contoh tanpa database aplikasi, autentikasi nyata atau panggilan provider; komponen langsung dibuat dalam Blade.
+
+**Bukti T01:** [Hasil pemeriksaan fondasi frontend](../docs/task-01-validation.md). Kelulusan ini hanya mencakup fondasi tampilan; R14/R15 secara keseluruhan dan T02–T24 belum dinyatakan selesai.
 
 
 ### Task 02 — Menyusun menu dan komponen bersama
