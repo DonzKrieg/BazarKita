@@ -75,11 +75,13 @@ Perubahan kecil pada frontend setelah integrasi dapat dilakukan untuk memperbaik
 
 **Properti uji:** P02, P18
 
-- [ ] Buat lima isian wajib dan panel tambahan sesuai R2, dengan batas sewa per hari, label pendek serta contoh pengisian.
-- [ ] Tampilkan validasi di browser untuk nilai kosong, nol/negatif, koordinat dan rentang; contohkan edit serta profil belum lengkap tanpa input margin/kapasitas/budget total.
+- [x] Buat lima isian wajib dan panel tambahan sesuai R2, dengan batas sewa per hari, label pendek serta contoh pengisian.
+- [x] Tampilkan validasi di browser untuk nilai kosong, nol/negatif, koordinat dan rentang; contohkan edit serta profil belum lengkap tanpa input margin/kapasitas/budget total.
 
 **Selesai jika:** Form mudah dipahami dan perubahan dapat dicoba menggunakan data contoh; penyimpanan nyata menunggu backend.
 
+
+**Bukti T04:** [Panduan dan hasil pemeriksaan Usaha Saya](../docs/task-04-validation.md). Penyimpanan server dan pilihan personal tetap menunggu tahap berikutnya.
 
 ### Task 05 — Membuat Beranda, katalog dan detail
 

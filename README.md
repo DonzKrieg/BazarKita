@@ -4,7 +4,7 @@ Fondasi frontend untuk membantu UMKM makanan dan minuman mengenali bazar di Band
 
 ## Status pengerjaan
 
-Task 01–03 selesai: fondasi Laravel, empat menu utama, komponen bersama, serta form Daftar/Masuk dan Keluar contoh. Semua informasi diberi label **Contoh**. Validasi akun dan pilihan peran berjalan lokal tanpa menyimpan kata sandi atau membuat sesi autentikasi. Alur layar selanjutnya mengikuti T04–T10.
+Task 01–04 selesai: fondasi Laravel, empat menu utama, komponen bersama, form Daftar/Masuk dan Keluar contoh, serta form Usaha Saya dengan validasi browser. Semua informasi diberi label **Contoh**. Validasi akun dan pilihan peran berjalan lokal tanpa menyimpan kata sandi atau membuat sesi autentikasi. Perubahan profil contoh disimpan sementara di tab browser dan tampil sebagai ringkasan Beranda. Alur layar selanjutnya mengikuti T05–T10.
 
 Tahap ini tidak menggunakan database aplikasi, autentikasi nyata, API bisnis, worker, Apify, atau AI. Halaman /contoh/admin merupakan halaman contoh publik, bukan area admin yang sudah dilindungi. Jangan gunakan data pribadi atau kredensial nyata.
 
@@ -120,6 +120,7 @@ Tes fitur memeriksa rendering Blade, label contoh, harga/ketentuan paket, keadaa
 - [Komponen dan navigasi Task 02](docs/shared-components.md).
 - [Bukti Task 02](docs/task-02-validation.md).
 - [Panduan dan bukti Task 03](docs/task-03-validation.md).
+- [Panduan dan bukti Task 04](docs/task-04-validation.md).
 - Dokumen acuan: [requirement](specs/requirements-id.md), [design](specs/design-id.md), [implementation plan](specs/implementation-plan-id.md).
 
 Tanggal fixture tetap, dengan tanggal acuan 1 November 2026. Status bukan hasil perhitungan waktu nyata. Konfigurasi waktu aplikasi tetap UTC; tanggal dan label acara menggunakan WIB. Penghitungan, penyimpanan, keamanan, dan integrasi baru dikerjakan sesuai tahap backend.
