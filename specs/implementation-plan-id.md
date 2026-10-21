@@ -43,10 +43,12 @@ Perubahan kecil pada frontend setelah integrasi dapat dilakukan untuk memperbaik
 
 **Properti uji:** P09, P18
 
-- [ ] Buat empat menu Beranda, Katalog Bazar, Tersimpan dan Usaha Saya; sediakan akses masuk/keluar dan halaman admin terpisah.
-- [ ] Buat kartu, form, badge, panel rincian, dialog, loading/empty/error, format rupiah/WIB dan daftar istilah sederhana; tidak ada tab rekomendasi atau kalkulator.
+- [x] Buat empat menu Beranda, Katalog Bazar, Tersimpan dan Usaha Saya; sediakan akses masuk/keluar dan halaman admin terpisah.
+- [x] Buat kartu, form, badge, panel rincian, dialog, loading/empty/error, format rupiah/WIB dan daftar istilah sederhana; tidak ada tab rekomendasi atau kalkulator.
 
 **Selesai jika:** Navigasi dan komponen konsisten, dapat digunakan dengan keyboard dan tidak memakai istilah teknis pada layar UMKM.
+
+**Bukti T02:** [Hasil pemeriksaan menu dan komponen](../docs/task-02-validation.md), [panduan komponen](../docs/shared-components.md). Akses akun masih contoh; T03–T24 belum dinyatakan selesai.
 
 
 ### Task 03 — Membuat tampilan akun

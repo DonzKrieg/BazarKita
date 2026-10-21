@@ -10,7 +10,7 @@
             @foreach ($screen['events'] as $event)
                 <article class="rounded-xl border border-stone-200 bg-white p-5">
                     <div class="flex flex-wrap items-center justify-between gap-2">
-                        <p class="text-sm font-semibold text-emerald-800">{{ $event['status_label'] }}</p>
+                        <x-badge :tone="$event['status'] === 'cancelled' ? 'danger' : ($event['status'] === 'published' ? 'success' : 'warning')">{{ $event['status_label'] }}</x-badge>
                         <x-example-badge />
                     </div>
                     <h2 class="mt-3 text-lg font-semibold">{{ $event['name'] }}</h2>
@@ -24,6 +24,6 @@
                 </article>
             @endforeach
         </div>
-        <a href="{{ route('home') }}" class="button-primary mt-8">Kembali ke contoh beranda</a>
+        <a href="{{ route('home', $screen['persona']) }}" class="button-primary mt-8">Kembali ke contoh beranda</a>
     </section>
 @endsection

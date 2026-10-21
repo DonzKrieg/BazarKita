@@ -52,3 +52,9 @@ Tanggal acuan tetap menjaga pengujian bisa diulang. Status sudah ditentukan di f
 ## Keadaan dan interaksi
 
 Keadaan layar dipilih melalui GET /?state=... Nilai di luar daftar menghasilkan 404. loading merupakan keadaan statis yang sengaja diperagakan, bukan permintaan jaringan yang sedang berjalan. Tombol kembali/coba lagi membuka fixture normal. Panel sumber dibuka/ditutup menggunakan Alpine, dilengkapi aria-expanded, aria-controls, dan fallback teks tanpa JavaScript.
+
+## Penambahan T02
+
+screen.persona berisi parameter tautan contoh: {} untuk guest, atau {as: user/admin}. Seluruh parameter as/state diperiksa terhadap daftar nilai yang diizinkan. Header dan tautan antarhalaman mempertahankan identitas tersebut. screen.profile pada Usaha Saya berisi fixture profil lengkap; bukan hasil baca database.
+
+Halaman Masuk menerima next berupa home/saved/profile saja. Pemilihan pengguna contoh melanjutkan ke nama route itu. Identitas tersebut bukan kredensial dan tidak boleh dipakai sebagai mekanisme otorisasi pada tahap backend. Lihat shared-components.md untuk kontrak komponen dan batas implementasi T02.
