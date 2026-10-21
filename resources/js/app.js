@@ -1,5 +1,8 @@
 import Alpine from 'alpinejs';
 import accountPreview from './account-preview';
+import profilePreview from './profile-preview';
+
+Alpine.data('profilePreview', profilePreview);
 
 Alpine.data('accountPreview', accountPreview);
 

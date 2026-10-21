@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    @if($screen['viewer']['role'] !== 'guest')
+        <aside class="page-width pt-8" x-data="profilePreview(@js($screen['profile']), @js($screen['viewer']['role']))" aria-label="Profil contoh">
+            <div class="rounded-xl border border-stone-200 bg-white p-5">
+                <h2 class="font-semibold">Kebutuhan usaha contoh</h2>
+                <p class="mt-2 leading-7" x-text="summary"></p>
+                <p class="mt-2 text-sm text-slate-600">Ringkasan dari tab ini. Bazar di bawah masih contoh umum; pilihan personal tersedia pada tahap berikutnya.</p>
+                <a href="{{ route('profile', $screen['persona']) }}" class="mt-3 inline-block py-2 text-emerald-800 underline">Ubah Usaha Saya</a>
+            </div>
+        </aside>
+    @endif
     <section class="page-width py-12 sm:py-16">
         <div class="grid items-center gap-10 lg:grid-cols-[1.25fr_0.75fr]">
             <div>

@@ -62,3 +62,7 @@ Halaman Masuk menerima next berupa home/saved/profile saja. Pemilihan pengguna c
 ## Akun contoh (T03)
 
 `/login` dan `/register` memakai form Alpine `accountPreview`, dengan tujuan `next` yang sama (home/saved/profile). Form tidak mengirim isian. Skenario lokal menentukan hasil berhasil, email duplikat, kata sandi salah, atau percobaan dibatasi. Password dikosongkan setelah submit; peran pengguna/admin tetap fixture dari parameter `as`. Lihat [panduan T03](task-03-validation.md) untuk langkah uji dan batas autentikasi.
+
+## Profil contoh (T04)
+
+Form Usaha Saya dan ringkasan Beranda memakai Alpine `profilePreview` dengan fixture profil lengkap sebagai nilai awal. Perubahan valid disimpan lokal dalam `sessionStorage` pada kunci `bazarkita.profile-preview.v1.<role>`, tanpa endpoint mutasi. Nilai kosong tetap string kosong dan tidak diubah menjadi nol. Data tersimpan diperiksa bentuknya saat dibaca; kegagalan storage tidak menghalangi pengisian. Beranda hanya memperbarui ringkasan, bukan mengklaim pengurutan personal. Lihat [panduan T04](task-04-validation.md).

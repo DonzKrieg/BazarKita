@@ -11,6 +11,8 @@ class FrontendPreviewController extends Controller
     public function index(Request $request): View
     {
         $screen = $this->screen($request);
+        $fixtures = require resource_path('fixtures/frontend.php');
+        $screen['profile'] = $fixtures['profiles']['complete'];
         $screen['events'] = $screen['state'] === 'ready' ? array_slice($screen['events'], 0, 3) : [];
 
         return view('pages.home', compact('screen'));
