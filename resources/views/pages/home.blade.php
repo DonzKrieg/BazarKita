@@ -23,7 +23,7 @@
                 <p class="eyebrow text-slate-500">Ruang berjualan di sekitar Anda</p>
                 <h2 class="mt-2 text-2xl font-semibold tracking-tight text-forest">Bazar Mendatang</h2>
             </div>
-            <span class="text-sm text-slate-500">Pilihan contoh untuk pengunjung</span>
+            <a href="{{ route('catalog', $screen['persona']) }}" class="text-sm font-semibold text-emerald-800 underline underline-offset-4">Lihat Semua Bazar</a>
         </div>
         @if ($screen['state'] === 'ready')
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -32,14 +32,14 @@
                 @endforeach
             </div>
         @else
-            <x-screen-state :state="$screen['state']" :message="$screen['message']" />
+            <x-screen-state :state="$screen['state']" :message="$screen['message']" :action-url="route('home', $screen['persona'])" />
         @endif
         <details class="mt-8 rounded-xl border border-stone-200 px-5 py-4 text-sm">
             <summary class="font-medium text-slate-600">Coba keadaan tampilan</summary>
             <p class="mt-3 text-slate-600">Pilihan ini hanya mengubah contoh yang ditampilkan.</p>
             <nav aria-label="Keadaan contoh" class="mt-4 flex flex-wrap gap-3">
                 @foreach (['ready' => 'Berisi bazar', 'loading' => 'Memuat', 'empty' => 'Kosong', 'error' => 'Gagal', 'success' => 'Berhasil'] as $state => $label)
-                    <a href="{{ route('home', ['state' => $state]) }}#bazar"
+                    <a href="{{ route('home', array_merge($screen['persona'], ['state' => $state])) }}#bazar"
                        @if ($screen['state'] === $state) aria-current="page" @endif
                        @class(['rounded-lg border px-4 py-3', 'border-forest bg-forest text-white' => $screen['state'] === $state, 'border-stone-300 hover:bg-stone-100' => $screen['state'] !== $state])>{{ $label }}</a>
                 @endforeach
