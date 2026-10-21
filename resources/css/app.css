@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+@theme {
+    --font-sans: 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+    --color-paper: #faf9f6;
+    --color-forest: #173f35;
+}
+
+[x-cloak] { display: none !important; }
+
+@layer base {
+    body { @apply bg-paper text-slate-800 antialiased; }
+    button, a, select { @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700; }
+    button, summary, select { @apply cursor-pointer; }
+}
+
+@layer components {
+    .page-width { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+    .eyebrow { @apply text-xs font-bold tracking-widest uppercase; }
+    .button-primary { @apply inline-flex min-h-11 items-center justify-center rounded-xl bg-forest px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-900; }
+}
