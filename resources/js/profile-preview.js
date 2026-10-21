@@ -1,13 +1,10 @@
 const key = 'bazarkita.profile-preview.v1';
-const blank = () => ({ category: '', location: '', latitude: '', longitude: '', radius: '', rent: '', start: '', end: '', name: '', min: '', max: '', facilities: [] });
+const blank = () => ({ category: '', location: '', radius: '', rent: '', start: '', end: '', name: '', min: '', max: '', facilities: [] });
 const numeric = value => value !== '' && value !== null && Number.isFinite(Number(value));
 export function validateProfile(p) {
     const errors = {};
     if (!['Makanan', 'Minuman', 'Kerajinan', 'Lainnya'].includes(p.category)) errors.category = 'Pilih jenis produk.';
     if (!p.location.trim()) errors.location = 'Isi lokasi asal usaha.';
-    for (const [field, limit, label] of [['latitude', 90, 'Lintang'], ['longitude', 180, 'Bujur']]) {
-        if (!numeric(p[field]) || Math.abs(Number(p[field])) > limit) errors[field] = `${label} harus berupa angka antara -${limit} dan ${limit}.`;
-    }
     if (!numeric(p.radius) || Number(p.radius) <= 0) errors.radius = 'Jarak maksimal harus lebih dari 0 km.';
     if (!numeric(p.rent) || !Number.isSafeInteger(Number(p.rent)) || Number(p.rent) < 0) errors.rent = 'Isi sewa dalam rupiah bulat, minimal 0. Kolom kosong bukan gratis.';
     const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
@@ -34,7 +31,7 @@ export default (fixture, role) => ({
         this.updateSummary();
     },
     loadFixture() {
-        this.form = { category: fixture.product_category ?? '', location: fixture.location?.label ?? '', latitude: String(fixture.location?.latitude ?? ''), longitude: String(fixture.location?.longitude ?? ''), radius: String(fixture.radius_km ?? ''), rent: String(fixture.daily_rent_budget ?? ''), start: fixture.available_dates[0] ?? '', end: fixture.available_dates.at(-1) ?? '', name: fixture.name ?? '', min: String(fixture.product_price_min ?? ''), max: String(fixture.product_price_max ?? ''), facilities: [...fixture.required_facilities] };
+        this.form = { category: fixture.product_category ?? '', location: fixture.location?.label ?? '', radius: String(fixture.radius_km ?? ''), rent: String(fixture.daily_rent_budget ?? ''), start: fixture.available_dates[0] ?? '', end: fixture.available_dates.at(-1) ?? '', name: fixture.name ?? '', min: String(fixture.product_price_min ?? ''), max: String(fixture.product_price_max ?? ''), facilities: [...fixture.required_facilities] };
         this.errors = {}; this.message = '';
     },
     updateSummary() {

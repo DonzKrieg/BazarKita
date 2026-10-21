@@ -5,6 +5,15 @@ test('four menus preserve example identity and login destination', async ({ page
     const nav = page.getByRole('navigation', { name: 'Menu utama' });
     await expect(nav.getByRole('link')).toHaveText(['Beranda', 'Katalog Bazar', 'Tersimpan', 'Usaha Saya']);
     await expect(nav.getByRole('link', { name: 'Beranda', exact: true })).toHaveAttribute('aria-current', 'page');
+    if (page.viewportSize().width >= 1024) {
+        const brand = await page.getByRole('link', { name: 'BazarKita, beranda', exact: true }).boundingBox();
+        const menu = await nav.boundingBox();
+        const account = await page.getByRole('link', { name: 'Masuk', exact: true }).boundingBox();
+        expect(Math.abs((brand.y + brand.height / 2) - (menu.y + menu.height / 2))).toBeLessThan(2);
+        expect(menu.x).toBeGreaterThanOrEqual(brand.x + brand.width);
+        expect(menu.x + menu.width).toBeLessThanOrEqual(account.x);
+    }
+
 
     await nav.getByRole('link', { name: 'Tersimpan', exact: true }).click();
     await expect(page).toHaveURL(/\/login\?next=saved$/);

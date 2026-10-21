@@ -11,23 +11,23 @@
     @php($persona = $screen['viewer']['role'] === 'guest' ? [] : ['as' => $screen['viewer']['role']])
     <a href="#konten" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-4">Lewati ke konten</a>
     <header class="border-b border-stone-200 bg-white">
-        <div class="page-width flex min-h-20 items-center justify-between gap-4">
+        <div class="page-width flex min-h-20 flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3 lg:flex-nowrap">
             <a href="{{ route('home', $persona) }}" aria-label="BazarKita, beranda" class="flex items-center gap-3 text-xl font-bold tracking-tight text-forest">
                 <span aria-hidden="true" class="grid size-10 place-items-center rounded-xl bg-forest text-lg text-white">B.</span>
                 BazarKita
             </a>
-            <div class="flex items-center gap-3">
+            <x-navigation :viewer="$screen['viewer']" />
+            <div class="order-2 flex shrink-0 items-center gap-3 lg:order-3">
                 @if($screen['viewer']['role'] === 'guest')
                     <a href="{{ route('login') }}" class="button-secondary">Masuk</a>
                 @else
-                    <span class="hidden text-sm text-slate-600 md:block">{{ $screen['viewer']['name'] }} · Contoh</span>
+                    <span class="hidden text-sm text-slate-600 xl:block">{{ $screen['viewer']['name'] }} · Contoh</span>
                     <x-dialog id="keluar-contoh" title="Keluar dari contoh akun?" trigger="Keluar" confirm-label="Keluar dari contoh" :confirm-url="route('home')">
                         Anda akan kembali ke tampilan pengunjung. Tidak ada sesi akun nyata pada contoh ini.
                     </x-dialog>
                 @endif
             </div>
         </div>
-        <x-navigation :viewer="$screen['viewer']" />
     </header>
     <div class="border-b border-amber-200 bg-amber-50">
         <div class="page-width flex flex-wrap items-center gap-x-3 gap-y-1 py-3 text-sm text-amber-950">

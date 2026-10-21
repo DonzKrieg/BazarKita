@@ -3,19 +3,19 @@ import { test, expect } from '@playwright/test';
 const input = (page, name) => page.locator(`#profile-${name}`);
 const save = page => page.getByRole('button', { name: 'Terapkan perubahan contoh' }).click();
 
-test('profile validation distinguishes missing, zero, invalid coordinates and reversed ranges', async ({ page }) => {
+test('profile validation distinguishes missing, zero, location and reversed ranges', async ({ page }) => {
     await page.goto('/me/profile?as=user');
     await page.getByRole('button', { name: 'Coba profil belum lengkap' }).click();
     await save(page);
     await expect(input(page, 'category')).toBeFocused();
     await expect(input(page, 'rent')).toHaveAttribute('aria-invalid', 'true');
     await page.getByRole('button', { name: 'Kembalikan contoh awal' }).click();
-    for (const [field, value] of [['radius', '0'], ['rent', '-1'], ['latitude', '91'], ['longitude', '-181'], ['end', '2026-11-06']]) {
+    for (const [field, value] of [['radius', '0'], ['rent', '-1'], ['location', ''], ['end', '2026-11-06']]) {
         await input(page, field).fill(value);
     }
     await save(page);
-    for (const field of ['radius', 'rent', 'latitude', 'longitude', 'end']) await expect(input(page, field)).toHaveAttribute('aria-invalid', 'true');
-    await expect(input(page, 'latitude')).toBeFocused();
+    for (const field of ['radius', 'rent', 'location', 'end']) await expect(input(page, field)).toHaveAttribute('aria-invalid', 'true');
+    await expect(input(page, 'location')).toBeFocused();
     await input(page, 'radius').fill('-2');
     await save(page);
     await expect(input(page, 'radius')).toHaveAttribute('aria-invalid', 'true');
@@ -33,8 +33,7 @@ test('profile validation distinguishes missing, zero, invalid coordinates and re
     await expect(input(page, 'min')).toBeFocused();
     await input(page, 'max').fill('');
     await input(page, 'rent').fill('0');
-    await input(page, 'latitude').fill('0');
-    await input(page, 'longitude').fill('0');
+    await expect(page.locator('#profile-latitude, #profile-longitude')).toHaveCount(0);
     await save(page);
     await expect(page.getByRole('status')).toContainText('Perubahan contoh diterapkan');
 });

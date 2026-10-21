@@ -39,9 +39,9 @@ Laravel dipasang sejak awal. Seluruh halaman frontend langsung dibuat sebagai te
 
 **Acceptance Criteria:**
 
-1. Isian wajib untuk pilihan personal: jenis produk, lokasi asal, jarak maksimal, batas sewa stan per hari, dan tanggal tersedia. Gunakan label sederhana dan contoh singkat.
+1. Isian wajib untuk pilihan personal: jenis produk, lokasi asal, jarak maksimal, batas sewa stan per hari, dan tanggal tersedia. Gunakan label sederhana dan contoh singkat. Lokasi asal diisi sebagai kecamatan/kota; pengguna tidak diminta mengisi lintang atau bujur.
 2. Nama usaha, kisaran harga produk, dan fasilitas yang diperlukan tersedia sebagai isian tambahan. Tidak ada pertanyaan kapasitas produksi, margin, biaya variabel, atau anggaran total partisipasi.
-3. Tolak sewa negatif, jarak nol/negatif, koordinat tidak valid, dan rentang tanggal/harga terbalik. Nol sewa berarti hanya mencari sewa gratis yang sudah dipastikan; kolom kosong tidak berarti nol.
+3. Tolak sewa negatif, jarak nol/negatif, lokasi kosong, dan rentang tanggal/harga terbalik. Koordinat untuk perhitungan jarak ditentukan dan divalidasi oleh sistem pada tahap integrasi lokasi, bukan dimasukkan pengguna. Nol sewa berarti hanya mencari sewa gratis yang sudah dipastikan; kolom kosong tidak berarti nol.
 4. Tampilkan petunjuk pada isian yang belum benar; perubahan data usaha digunakan pada pembukaan Beranda berikutnya.
 
 # Kebutuhan 3 — Mengumpulkan informasi bazar

@@ -143,7 +143,7 @@ Properti berikut adalah aturan yang harus diuji, bukan hasil uji yang sudah lulu
 | ID | Properti | Validasi | Requirement |
 |---|---|---|---|
 | P01 — Akun dan sesi aman | Email unik, akses data sesuai pemilik/peran, dan sesi keluar tidak dapat digunakan lagi. | Uji dua pengguna, admin, URL langsung, role palsu, email duplikat, dan cookie setelah logout. | R1.AC1–3, R13.AC1–2 |
-| P02 — Profil singkat dan valid | Data wajib lengkap sebelum pilihan personal; nilai kosong bukan nol; perubahan profil memengaruhi Beranda. | Uji radius nol, sewa negatif/nol, tanggal/harga terbalik, koordinat invalid, dan perubahan profil. | R2.AC1–4 |
+| P02 — Profil singkat dan valid | Data wajib lengkap sebelum pilihan personal; nilai kosong bukan nol; perubahan profil memengaruhi Beranda. | Uji radius nol, sewa negatif/nol, tanggal/harga terbalik, lokasi kosong, dan perubahan profil. Validasi koordinat sistem diuji pada integrasi lokasi. | R2.AC1–4 |
 | P03 — Pengambilan tidak menggandakan data | Satu unggahan memiliki satu identitas; pengambilan harian tidak berganda dan tidak dipicu pencarian. | Jalankan dua worker/retry untuk unggahan sama; pastikan sumber nonaktif dilewati dan run tercatat. | R3.AC1–2 |
 | P04 — Informasi tanpa bukti tetap belum pasti | Ekstraksi tidak menebak informasi dan tidak langsung mengubah bazar publik. | Uji poster parsial, tanggal ambigu, JSON rusak, dan instruksi berbahaya dalam caption; cek antrean admin. | R3.AC3, R4.AC3 |
 | P05 — Publikasi dan penggabungan aman | Hanya data wajib valid yang diterbitkan; konflik penting terselesaikan; sumber, catatan pengguna, dan audit tidak hilang. | Hilangkan tiap field wajib, uji edit bersamaan/rollback, merge dengan bookmark/evaluasi ganda, dan verifikasi per field. | R4.AC1–4 |
@@ -164,3 +164,6 @@ Properti berikut adalah aturan yang harus diuji, bukan hasil uji yang sudah lulu
 | P20 — Rilis bisa dijalankan dan diperiksa | URL live, petunjuk setup, repo tanpa rahasia, dan label Contoh tersedia. | Fresh setup, smoke test live, pemeriksaan repo serta label pada data demo. | R15.AC3 |
 
 Simpan test ID, property ID, requirement/AC, input atau seed, hasil, dan bukti yang relevan. Seluruh R1–R15 tercakup oleh tabel ini; verifikasi lengkap dilakukan sebelum rilis.
+## Penyederhanaan navigasi dan lokasi usaha
+
+Pada layar lebar (mulai 1024 piksel), empat menu utama berada sejajar dengan logo dan akses akun dalam satu navbar. Pada layar sempit, menu tetap di header dan membungkus ke baris berikutnya agar mudah disentuh. Lokasi asal cukup diisi sebagai kecamatan/kota. Pengguna tidak mengisi lintang/bujur; penentuan koordinat dan perhitungan jarak nyata menunggu integrasi lokasi.

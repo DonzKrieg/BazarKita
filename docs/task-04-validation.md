@@ -4,12 +4,12 @@ Tanggal pemeriksaan: 22 Oktober 2026 (WIB).
 
 ## Mencoba tampilan
 
-Buka Usaha Saya sebagai pengguna contoh (`/me/profile?as=user`). Lima kelompok wajib mencakup jenis produk, lokasi asal (daerah serta lintang/bujur), jarak maksimal, batas sewa per hari, dan rentang tanggal tersedia dalam WIB. Panel **Tambahkan Informasi Usaha** memuat nama usaha, kisaran harga produk, dan fasilitas opsional. Tidak ada input kapasitas, margin, biaya variabel, atau anggaran total.
+Buka Usaha Saya sebagai pengguna contoh (`/me/profile?as=user`). Lima kelompok wajib mencakup jenis produk, lokasi asal (kecamatan/kota), jarak maksimal, batas sewa per hari, dan rentang tanggal tersedia dalam WIB. Panel **Tambahkan Informasi Usaha** memuat nama usaha, kisaran harga produk, dan fasilitas opsional. Tidak ada input kapasitas, margin, biaya variabel, atau anggaran total.
 
 Gunakan **Coba profil belum lengkap** untuk mengosongkan form. **Terapkan perubahan contoh** memvalidasi isian, menampilkan kesalahan di dekat field, dan memindahkan fokus ke kesalahan pertama. Panel tambahan otomatis terbuka jika kesalahan berada di dalamnya.
 
 - Sewa kosong ditolak; sewa 0 diterima sebagai hanya mencari sewa gratis yang dipastikan. Sewa negatif/pecahan ditolak.
-- Jarak harus angka positif. Koordinat wajib valid pada rentang lintang -90–90 dan bujur -180–180; koordinat 0 valid.
+- Jarak harus angka positif. Lokasi asal wajib diisi; tidak ada isian lintang atau bujur.
 - Tanggal wajib valid, dengan tanggal akhir tidak mendahului awal. Rentang satu hari diperbolehkan.
 - Harga opsional boleh dikosongkan keduanya. Jika diisi, kedua batas wajib berupa rupiah bulat nonnegatif dan tidak terbalik.
 
@@ -24,7 +24,7 @@ Perubahan valid disimpan dalam `sessionStorage` per peran contoh, lalu digunakan
 | `php vendor/bin/pint --test` | Lulus |
 | `npm run test:browser` | 30 tes lulus pada viewport 360/768/1280 |
 | Profil belum lengkap | Isian kosong ditolak, fokus ke jenis produk |
-| Nilai batas | Jarak nol/negatif, sewa kosong/negatif/nol, koordinat di luar batas dan nol |
+| Nilai batas | Jarak nol/negatif, sewa kosong/negatif/nol, lokasi asal kosong |
 | Rentang | Tanggal terbalik, harga terbalik/sebagian kosong, harga opsional kosong |
 | Perubahan contoh | Tanpa request, ringkasan Beranda berubah, reload mempertahankan isian, reset mengembalikan fixture |
 | Storage diblokir | Pesan fallback tampil dan isian tidak hilang |
