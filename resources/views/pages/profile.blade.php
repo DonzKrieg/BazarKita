@@ -15,17 +15,9 @@
             <x-form-field id="profile-category" label="Jenis produk" type="select" required hint="Contoh: Makanan." x-model="form.category" x-bind:aria-invalid="!!errors.category" :options="['' => 'Pilih jenis produk', 'Makanan' => 'Makanan', 'Minuman' => 'Minuman', 'Kerajinan' => 'Kerajinan', 'Lainnya' => 'Lainnya']">
                 <x-slot:error><span x-text="errors.category"></span></x-slot:error>
             </x-form-field>
-            <fieldset class="space-y-4"><legend class="mb-3 font-semibold">Lokasi asal (wajib)</legend>
-            <x-form-field id="profile-location" label="Daerah asal" type="text" required hint="Contoh: Coblong, Bandung. Koordinat digunakan untuk jarak garis lurus." x-model="form.location" x-bind:aria-invalid="!!errors.location" >
+            <x-form-field id="profile-location" label="Lokasi asal" type="text" required hint="Isi kecamatan dan kota usaha Anda. Contoh: Coblong, Bandung." x-model="form.location" x-bind:aria-invalid="!!errors.location">
                 <x-slot:error><span x-text="errors.location"></span></x-slot:error>
             </x-form-field>
-            <x-form-field id="profile-latitude" label="Lintang" type="number" required hint="Contoh: -6.8868. Rentang -90 sampai 90." x-model="form.latitude" x-bind:aria-invalid="!!errors.latitude" step="any" min="-90" max="90">
-                <x-slot:error><span x-text="errors.latitude"></span></x-slot:error>
-            </x-form-field>
-            <x-form-field id="profile-longitude" label="Bujur" type="number" required hint="Contoh: 107.6133. Rentang -180 sampai 180." x-model="form.longitude" x-bind:aria-invalid="!!errors.longitude" step="any" min="-180" max="180">
-                <x-slot:error><span x-text="errors.longitude"></span></x-slot:error>
-            </x-form-field>
-            </fieldset>
             <x-form-field id="profile-radius" label="Jarak maksimal (km)" type="number" required hint="Contoh: 10 km. Jarak garis lurus, bukan jarak perjalanan." x-model="form.radius" x-bind:aria-invalid="!!errors.radius" step="any" min="0">
                 <x-slot:error><span x-text="errors.radius"></span></x-slot:error>
             </x-form-field>

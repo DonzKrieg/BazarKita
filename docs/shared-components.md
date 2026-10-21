@@ -2,7 +2,7 @@
 
 ## Navigasi contoh
 
-Empat menu utama selalu tersedia: Beranda (/), Katalog Bazar (/events), Tersimpan (/me/saved-events), dan Usaha Saya (/me/profile). Menu aktif memiliki aria-current=page. Pada ponsel, menu tersusun dua kolom agar semua tujuan tetap terlihat.
+Empat menu utama selalu tersedia: Beranda (/), Katalog Bazar (/events), Tersimpan (/me/saved-events), dan Usaha Saya (/me/profile). Menu aktif memiliki aria-current=page. Mulai lebar 1024 piksel, menu sejajar dengan logo dan akses akun dalam satu navbar. Pada ponsel, menu tersusun dua kolom di dalam header agar semua tujuan tetap terlihat.
 
 Identitas contoh dipilih melalui query as=guest/user/admin. Query ini hanya memilih fixture; bukan sesi, autentikasi, atau otorisasi. Seluruh layar berlabel Contoh. Tidak ada password atau data pengguna nyata.
 
