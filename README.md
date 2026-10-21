@@ -11,7 +11,7 @@ Tahap ini tidak menggunakan database aplikasi, autentikasi nyata, API bisnis, wo
 ## Persyaratan
 
 - PHP 8.3+ beserta ekstensi Laravel dan PHPUnit (ctype, curl, dom, fileinfo, filter, hash, mbstring, openssl, pcre, PDO, session, tokenizer, xml, xmlwriter, zip).
-- Composer 2.
+- Composer 2.10 atau lebih baru, dengan instalasi paket dari arsip distribusi (dist).
 - Node.js 22.12+ atau 24, npm.
 - Tidak memerlukan PostgreSQL pada tahap frontend.
 
@@ -26,7 +26,7 @@ cd /workspace/BazarKita
 ## Instalasi
 
 ~~~bash
-composer install
+composer install --prefer-dist
 php -r "file_exists('.env') || copy('.env.example', '.env');"
 php artisan key:generate
 npm ci
@@ -34,6 +34,34 @@ npm run build
 ~~~
 
 Pembuatan APP_KEY dilakukan sekali pada instalasi baru. Pertahankan kunci yang sudah ada pada lingkungan yang digunakan. Berkas .env tidak masuk Git. Tidak perlu menjalankan migrasi atau membuat berkas SQLite.
+
+### Windows: gagal membuat nul.env saat composer install
+
+Dependensi vlucas/phpdotenv memiliki tests/fixtures/env/nul.env dalam repositori Git. Windows tidak dapat membuat nama perangkat NUL, termasuk bila memakai ekstensi. Folder tes tersebut dikecualikan oleh .gitattributes upstream dari ZIP distribusi resminya. Karena itu gunakan instalasi dist, bukan checkout source.
+
+Proyek sudah menetapkan preferred-install: dist. Pada Composer sebelum 2.10, kegagalan mengunduh ZIP masih dapat memicu fallback otomatis ke Git. Mulai Composer 2.10, fallback itu dinonaktifkan secara default. Jalankan dari root proyek di PowerShell:
+
+~~~powershell
+composer self-update --stable
+composer --version
+php --ri zip
+composer install --prefer-dist
+~~~
+
+Pastikan versi Composer minimal 2.10 dan ekstensi ZIP aktif di PHP CLI. Jika Composer dikelola oleh installer atau package manager, perbarui melalui alat tersebut ketika self-update tidak tersedia. Perintah --prefer-dist mengesampingkan preferensi source dari konfigurasi global. Jangan mengaktifkan kembali source-fallback.
+
+Jika folder vendor hanya berisi hasil instalasi gagal dan tidak memiliki perubahan manual, hapus folder yang belum lengkap lalu ulangi:
+
+~~~powershell
+if (Test-Path vendor) { Remove-Item -Recurse -Force vendor }
+composer install --prefer-dist
+~~~
+
+Pertahankan composer.lock dan .env; tidak perlu menjalankan composer update. Bila unduhan ZIP tetap gagal, tangani pesan unduhan yang mendahuluinya (misalnya proxy, TLS, atau batas GitHub API). Akses HTTPS ke api.github.com dan codeload.github.com diperlukan untuk arsip GitHub. Jangan menonaktifkan pemeriksaan TLS atau mengubah proteksi nama file Git untuk melewati kegagalan ini.
+
+CI memiliki job windows-install untuk menjalankan instalasi dist dan boot Laravel di Windows. Hasil CI perlu diperiksa setelah perubahan di-push; pengujian Linux saja tidak membuktikan instalasi Windows.
+
+Rujukan: [.gitattributes phpdotenv pada versi terkunci](https://github.com/phpdotenv/phpdotenv/blob/301c07936b16d88628b126b01d082ba153cf4c40/.gitattributes) dan [perubahan fallback pada Composer 2.10](https://github.com/composer/composer/blob/main/CHANGELOG.md#2100-2026-05-28).
 
 ## Menjalankan
 
