@@ -1,4 +1,7 @@
 import Alpine from 'alpinejs';
+import bazarBrowser from './bazar-browser';
+Alpine.data('bazarBrowser', bazarBrowser);
+Alpine.data('correctionPreview', () => ({ reason: '', message: '', submit() { this.message = this.reason.trim() ? 'Contoh laporan diterima untuk antrean pemeriksaan admin. Tidak ada laporan dikirim atau data bazar diubah.' : 'Isi alasan laporan terlebih dahulu.'; if (!this.reason.trim()) this.$refs.reason.focus(); } }));
 import accountPreview from './account-preview';
 import profilePreview from './profile-preview';
 

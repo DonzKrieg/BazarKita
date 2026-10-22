@@ -6,7 +6,7 @@
             <div class="rounded-xl border border-stone-200 bg-white p-5">
                 <h2 class="font-semibold">Kebutuhan usaha contoh</h2>
                 <p class="mt-2 leading-7" x-text="summary"></p>
-                <p class="mt-2 text-sm text-slate-600">Ringkasan dari tab ini. Bazar di bawah masih contoh umum; pilihan personal tersedia pada tahap berikutnya.</p>
+                <p class="mt-2 text-sm text-slate-600">Ringkasan dari tab ini. Pilihan di bawah menggunakan data bazar dan lokasi contoh.</p>
                 <a href="{{ route('profile', $screen['persona']) }}" class="mt-3 inline-block py-2 text-emerald-800 underline">Ubah Usaha Saya</a>
             </div>
         </aside>
@@ -27,20 +27,34 @@
             </aside>
         </div>
     </section>
-    <section id="bazar" class="page-width scroll-mt-6">
+    <section id="bazar" class="page-width scroll-mt-6" x-data="bazarBrowser(@js($screen['browse_events']), @js($screen['profile']), @js($screen['viewer']['role']), true)">
         <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
             <div>
                 <p class="eyebrow text-slate-500">Ruang berjualan di sekitar Anda</p>
-                <h2 class="mt-2 text-2xl font-semibold tracking-tight text-forest">Bazar Mendatang</h2>
+                <h2 class="mt-2 text-2xl font-semibold tracking-tight text-forest" x-text="title">Bazar Mendatang</h2>
             </div>
             <a href="{{ route('catalog', $screen['persona']) }}" class="text-sm font-semibold text-emerald-800 underline underline-offset-4">Lihat Semua Bazar</a>
         </div>
         @if ($screen['state'] === 'ready')
+            <p x-show="fallback" class="mb-5"><a href="{{ route('profile', $screen['persona']) }}" class="text-emerald-800 underline">Lengkapi Usaha Saya</a> untuk mencoba pilihan personal.</p>
+            <p x-show="!fallback && !originPoint" x-cloak class="mb-5">Lokasi asal belum dikenali dalam contoh. Jarak belum dapat dipastikan; lihat katalog untuk menjelajahi bazar.</p>
+            <p x-show="!selected.length" x-cloak class="mb-5" role="status">Belum ada bazar yang sesuai. Coba ubah pilihan pencarian atau lihat katalog.</p>
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                @foreach ($screen['events'] as $event)
-                    <x-event-preview :event="$event" />
+                @foreach ($screen['browse_events'] as $event)
+                    <div x-show="visible(@js($event['id']))" x-bind:style="{ order: selected.findIndex(event => event.id === @js($event['id'])) }" @if($loop->index >= 3) x-cloak @endif>
+                        <x-event-preview :event="$event" :persona="$screen['persona']" :detail-link="true" />
+                        <ul x-show="!fallback" x-cloak class="mt-3 space-y-1 text-sm text-emerald-800" aria-label="Alasan pilihan">
+                            <li>Jenis produk diterima</li><li>Sewa sesuai batas harian Anda</li>
+                        </ul>
+                    </div>
                 @endforeach
             </div>
+            @if($screen['viewer']['role'] !== 'guest')
+                <div class="mt-6 max-w-lg">
+                    <x-form-field id="home-scenario" label="Coba jumlah pilihan" type="select" x-model="scenario" :options="['auto' => 'Sesuai profil contoh', '0' => '0 pilihan', '1' => '1 pilihan', '2' => '2 pilihan', '3' => '3 pilihan', '5' => '5 kandidat (tampilkan maksimal 3)', 'incomplete' => 'Profil belum lengkap']" hint="Skenario membatasi jumlah kandidat yang sudah sesuai profil; tidak menambahkan bazar yang tidak cocok." />
+                </div>
+            @endif
+            <noscript><p>Aktifkan JavaScript untuk pilihan sesuai profil. Tiga bazar mendatang contoh ditampilkan.</p></noscript>
         @else
             <x-screen-state :state="$screen['state']" :message="$screen['message']" :action-url="route('home', $screen['persona'])" />
         @endif

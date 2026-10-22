@@ -11,3 +11,5 @@ Route::get('/register', [FrontendPreviewController::class, 'login'])->name('regi
 Route::get('/login', [FrontendPreviewController::class, 'login'])->name('login');
 Route::get('/contoh/admin', [FrontendPreviewController::class, 'admin'])->name('preview.admin');
 Route::get('/contoh/komponen', [FrontendPreviewController::class, 'components'])->name('preview.components');
+
+Route::get('/events/{event}', [FrontendPreviewController::class, 'detail'])->name('event.detail');

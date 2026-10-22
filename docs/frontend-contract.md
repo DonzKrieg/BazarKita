@@ -68,3 +68,9 @@ Halaman Masuk menerima next berupa home/saved/profile saja. Pemilihan pengguna c
 Form Usaha Saya dan ringkasan Beranda memakai Alpine `profilePreview` dengan fixture profil lengkap sebagai nilai awal. Perubahan valid disimpan lokal dalam `sessionStorage` pada kunci `bazarkita.profile-preview.v1.<role>`, tanpa endpoint mutasi. Nilai kosong tetap string kosong dan tidak diubah menjadi nol. Data tersimpan diperiksa bentuknya saat dibaca; kegagalan storage tidak menghalangi pengisian. Beranda hanya memperbarui ringkasan, bukan mengklaim pengurutan personal. Lihat [panduan T04](task-04-validation.md).
 
 Lokasi pada form profil hanya berupa nama kecamatan/kota. Model form dan validasi browser tidak lagi meminta koordinat. Data sementara versi sebelumnya tetap dapat dibaca; properti koordinat lama diabaikan. Koordinat fixture sumber tetap tersedia untuk tahap integrasi, tetapi tidak digunakan sebagai hasil geocoding dari lokasi yang diketik pengguna.
+
+## Jelajah bazar (T05)
+
+`screen.browse_events` berisi enam fixture aktif dari `browse.php`; `screen.events` tetap kumpulan sesuai halaman. Katalog dan Beranda memakai Alpine `bazarBrowser` untuk filter lokal dan pilihan maksimal tiga. `profilePreview` membaca profil sementara per peran sehingga perubahan pada Usaha Saya dapat memengaruhi pilihan. Lokasi asal hanya dikenali melalui pemetaan contoh terbatas; tidak ada geocoding atau permintaan lokasi perangkat.
+
+`GET /events/{event}` hanya merender detail fixture aktif dan memberi 404 untuk ID lain. Laporan koreksi dan kontak masih demonstrasi browser tanpa POST. Acuan tanggal semua contoh T05 adalah 2026-11-01 WIB. Lihat [panduan T05](task-05-validation.md).

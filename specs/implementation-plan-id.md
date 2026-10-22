@@ -91,11 +91,13 @@ Perubahan kecil pada frontend setelah integrasi dapat dilakukan untuk memperbaik
 
 **Properti uji:** P06, P07, P08, P09, P11, P13, P14
 
-- [ ] Buat Beranda maksimal tiga pilihan dan dua alasan, fallback Bazar Mendatang, keadaan tanpa hasil, serta Lihat Semua Bazar menuju katalog lengkap.
-- [ ] Buat pencarian/filter interaktif berbasis fixture dan detail bertahap; tampilkan harga/hari, Setara untuk paket, hari wajib, biaya wajib, sumber, kontak dan laporan koreksi. Jangan tampilkan skor/likes.
+- [x] Buat Beranda maksimal tiga pilihan dan dua alasan, fallback Bazar Mendatang, keadaan tanpa hasil, serta Lihat Semua Bazar menuju katalog lengkap.
+- [x] Buat pencarian/filter interaktif berbasis fixture dan detail bertahap; tampilkan harga/hari, Setara untuk paket, hari wajib, biaya wajib, sumber, kontak dan laporan koreksi. Jangan tampilkan skor/likes.
 
 **Selesai jika:** Kasus 0/1/2/3/5 pilihan dan data belum pasti dapat diperagakan; harga paket tidak terkesan sebagai sewa satu hari.
 
+
+**Bukti T05:** [Panduan dan hasil pemeriksaan katalog, Beranda, dan detail](../docs/task-05-validation.md). Seluruh interaksi masih memakai fixture; layanan lokasi dan pemrosesan laporan nyata belum tersedia.
 
 ### Task 06 — Membuat Tersimpan dan Bandingkan
 
