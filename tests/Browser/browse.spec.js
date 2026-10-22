@@ -88,6 +88,7 @@ test('detail exposes rental obligations, source, contact and local correction wi
     await expect(page.getByText('Tanyakan harga sewa', { exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Hubungi Penyelenggara' })).toHaveCount(0);
     await page.goto('/events/bazar-dago?as=user');
+    if (page.viewportSize().width < 1024) await page.getByRole('button', { name: 'Buka menu utama' }).click();
     await expect(page.getByRole('navigation', { name: 'Menu utama' }).getByRole('link', { name: 'Katalog Bazar' })).toHaveAttribute('aria-current', 'page');
     await page.getByRole('button', { name: 'Alasan pilihan', exact: true }).click();
     await expect(page.getByText('Jenis produk Makanan diterima.', { exact: true })).toBeVisible();

@@ -1,4 +1,4 @@
-@props(['event', 'persona' => [], 'detailLink' => false, 'idPrefix' => ''])
+@props(['event', 'persona' => [], 'detailLink' => false, 'idPrefix' => '', 'distance' => false, 'reasons' => false])
 <x-card :heading-id="'judul-'.$idPrefix.$event['id']">
     <div class="mb-5 flex items-center justify-between gap-2">
         <span class="eyebrow text-emerald-800">{{ $event['location']['label'] }}</span>
@@ -7,6 +7,14 @@
     <p class="text-sm text-slate-600">{{ $event['date_label'] }}</p>
     <h3 id="judul-{{ $idPrefix.$event['id'] }}" class="mt-2 text-xl font-semibold tracking-tight text-forest">{{ $event['name'] }}</h3>
     <p class="mt-3 text-sm text-slate-600">{{ $event['registration_label'] }}</p>
+    @if($distance)
+        <p class="mt-2 text-sm leading-6 text-slate-600" x-show="km(@js($event)) !== null" x-cloak x-text="km(@js($event))?.toFixed(1) + ' km · jarak garis lurus'"></p>
+    @endif
+    @if($reasons)
+        <ul x-show="!fallback" x-cloak class="mt-4 space-y-1 rounded-lg bg-emerald-50 p-3 text-sm leading-6 text-emerald-900" aria-label="Alasan pilihan">
+            <li>Jenis produk diterima</li><li>Sewa sesuai batas harian Anda</li>
+        </ul>
+    @endif
     @if(in_array($event['status'], ['ended', 'cancelled', 'withdrawn'], true))
         <div class="mt-3"><x-badge :tone="$event['status'] === 'cancelled' ? 'danger' : 'warning'">{{ $event['status_label'] }}</x-badge></div>
     @endif

@@ -10,7 +10,7 @@
 <body class="min-h-screen">
     @php($persona = $screen['viewer']['role'] === 'guest' ? [] : ['as' => $screen['viewer']['role']])
     <a href="#konten" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-4">Lewati ke konten</a>
-    <header class="border-b border-stone-200 bg-white">
+    <header class="border-b border-stone-200 bg-white" x-data="{ menuOpen: false }" @keydown.escape="if (menuOpen) { menuOpen = false; $refs.menuToggle.focus(); }" @click.outside="menuOpen = false">
         <div class="page-width flex min-h-20 flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3 lg:flex-nowrap">
             <a href="{{ route('home', $persona) }}" aria-label="BazarKita, beranda" class="flex items-center gap-3 text-xl font-bold tracking-tight text-forest">
                 <span aria-hidden="true" class="grid size-10 place-items-center rounded-xl bg-forest text-lg text-white">B.</span>
@@ -26,6 +26,12 @@
                         Anda akan kembali ke tampilan pengunjung. Tidak ada sesi akun nyata pada contoh ini.
                     </x-dialog>
                 @endif
+                <button type="button" class="button-secondary size-11 shrink-0 p-2 lg:hidden" x-cloak x-ref="menuToggle" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-controls="main-navigation" :aria-label="menuOpen ? 'Tutup menu utama' : 'Buka menu utama'">
+                    <svg aria-hidden="true" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path x-show="!menuOpen" d="M4 6h16M4 12h16M4 18h16" />
+                        <path x-show="menuOpen" d="m6 6 12 12M6 18 18 6" />
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
