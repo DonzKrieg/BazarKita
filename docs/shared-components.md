@@ -66,3 +66,9 @@ Halaman /contoh/komponen memuat contoh interaktif dan daftar istilah untuk pengu
 Biaya wajib, kewajiban paket, pembatalan, dan ketidakpastian harga tidak boleh ditempatkan hanya di panel tertutup. Tidak ada menu rekomendasi terpisah atau kalkulator.
 
 Filter katalog memakai `hintAfter` pada form-field agar label dan input sejajar, dengan petunjuk di bawah input. Jarak dan alasan pilihan menjadi bagian dari event-preview melalui prop `distance`/`reasons`, sehingga tidak melampaui tinggi kartu.
+
+## Penyegaran visual
+
+`site-header`/`nav-shell` memberi header pil gelap dengan menu aktif kontras. `hero-title`, `section-title`, `status-chip`, `feature-panel`, `section-band`, dan `hero-preview` menyamakan tipografi serta ritme halaman. `event-card` memakai header gradasi deterministik berdasarkan ID bazar; warna bersifat dekoratif dan tidak menyatakan status/kecocokan. Status tetap berupa teks yang eksplisit. Seluruh aset dekorasi berasal dari CSS lokal, tanpa font atau gambar eksternal.
+
+Pemeriksaan desain: build, 23 tes PHP (159 assertion), 45 tes browser pada 360/768/1280 piksel, serta pemeriksaan screenshot Beranda desktop. Filter, jarak di dalam kartu, navigasi keyboard/hamburger, detail, serta validasi form tetap dipertahankan.

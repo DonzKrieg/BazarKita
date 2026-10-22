@@ -1,6 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
+    <section class="page-width py-12 sm:py-20">
+        <div class="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+            <div>
+                <span class="status-chip">● Untuk pelaku usaha Bandung</span>
+                <h1 class="hero-title mt-6">Pilih bazar yang tepat.<br><span class="text-emerald-600">Kenali sewanya.</span><br>Mulai dengan yakin.</h1>
+                <p class="mt-6 max-w-lg text-base leading-7 text-slate-500">Temukan ruang berjualan yang sesuai usaha Anda. Lihat lokasi, tanggal, dan ketentuan sewa dengan jelas sebelum memilih stan.</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="#bazar" class="button-primary">Jelajahi contoh bazar <span class="ml-3" aria-hidden="true">→</span></a>
+                    <a href="{{ route('profile', $screen['persona']) }}" class="button-secondary">Lengkapi profil usaha</a>
+                </div>
+                <div class="mt-7 flex flex-wrap gap-2"><span class="status-chip">✓ Harga per hari</span><span class="status-chip">✓ Ketentuan paket jelas</span><span class="status-chip">✓ Sumber dapat diperiksa</span></div>
+            </div>
+            <aside class="hero-preview" aria-labelledby="catatan-sewa">
+                <div class="flex items-center justify-between gap-3"><span class="text-sm font-bold">Bazar pilihan Bandung</span><x-example-badge /></div>
+                <p class="eyebrow mt-8 text-slate-400">Kenali sebelum memilih</p>
+                <h2 id="catatan-sewa" class="mt-3 text-2xl font-bold tracking-tight">Pekan Kuliner Braga</h2>
+                <p class="mt-2 text-sm text-slate-500">Braga, Bandung · 7–9 November 2026</p>
+                <div class="mt-6 grid grid-cols-2 gap-3">
+                    <div class="rounded-xl bg-stone-50 p-4"><p class="text-xs text-slate-500">Setara per hari</p><p class="mt-2 text-xl font-bold">Rp150.000</p></div>
+                    <div class="rounded-xl bg-stone-50 p-4"><p class="text-xs text-slate-500">Komitmen sewa</p><p class="mt-2 text-xl font-bold text-emerald-700">3 hari</p></div>
+                </div>
+                <div class="mt-4 rounded-xl bg-stone-900 p-5 text-white"><p class="text-xs font-semibold text-emerald-400">PAHAMI KETENTUANNYA</p><p class="mt-3 text-sm leading-6 text-stone-300">Paket Rp450.000 untuk tiga hari. Harga setara bukan tawaran sewa satu hari.</p><p class="mt-3 text-xs text-stone-300">Biaya tambahan wajib: belum ada informasi.</p></div>
+                <p class="mt-5 text-xs leading-5 text-slate-500">Cuplikan data contoh · Pastikan kembali kepada penyelenggara.</p>
+            </aside>
+        </div>
+    </section>
+    <section class="section-band">
+        <div class="page-width">
+            <p class="eyebrow text-emerald-700">Informasi yang membantu keputusan</p>
+            <h2 class="section-title mt-3 max-w-lg">Kenali bazarnya.<br>Pahami kebutuhan usaha Anda.</h2>
+            <p class="mt-4 max-w-xl text-sm leading-6 text-slate-500">Hal penting ditampilkan lebih dulu, dengan rincian yang dapat dibuka saat dibutuhkan.</p>
+            <div class="mt-9 grid gap-5 sm:grid-cols-2">
+                @foreach([
+                    ['01 · Sewa transparan', 'Harga harian, ketentuan yang jelas', 'Bandingkan sewa per hari sambil tetap melihat harga paket asli, lama sewa wajib, dan biaya tambahan.', 'Harga belum pasti tetap diberi keterangan'],
+                    ['02 · Sesuai kebutuhan', 'Pilihan berangkat dari usaha Anda', 'Isi jenis produk, daerah asal, tanggal, jarak, dan batas sewa untuk mencoba pilihan yang sesuai.', 'Maksimal tiga pilihan di Beranda'],
+                    ['03 · Sumber informasi', 'Lihat asal informasi bazar', 'Buka sumber dan waktu pemeriksaan. Konfirmasi kembali jika informasi belum tersedia atau sudah lama.', 'Tidak ada klaim pasti ramai atau laris'],
+                    ['04 · Mudah dijelajahi', 'Rincian penting, tanpa terburu-buru', 'Saring katalog, baca ketentuan stan, lalu periksa kembali informasi dengan penyelenggara.', 'Data contoh selalu ditandai']
+                ] as [$tag, $title, $description, $note])
+                    <div class="feature-panel"><span class="status-chip">{{ $tag }}</span><h3 class="mt-4 text-lg font-bold tracking-tight">{{ $title }}</h3><p class="mt-3 text-sm leading-6 text-slate-500">{{ $description }}</p><p class="mt-6 border-t border-stone-100 pt-4 text-xs font-medium text-emerald-700">✓ {{ $note }}</p></div>
+                @endforeach
+            </div>
+        </div>
+    </section>
     @if($screen['viewer']['role'] !== 'guest')
         <aside class="page-width pt-8" x-data="profilePreview(@js($screen['profile']), @js($screen['viewer']['role']))" aria-label="Profil contoh">
             <div class="rounded-xl border border-stone-200 bg-white p-5">
@@ -11,27 +54,11 @@
             </div>
         </aside>
     @endif
-    <section class="page-width py-12 sm:py-16">
-        <div class="grid items-center gap-10 lg:grid-cols-[1.25fr_0.75fr]">
-            <div>
-                <p class="eyebrow text-emerald-800">Untuk usaha makanan & minuman</p>
-                <h1 class="mt-5 max-w-2xl text-4xl leading-tight font-semibold tracking-tight text-forest sm:text-5xl">Temukan tempat baru<br class="hidden sm:block"> untuk usaha Anda.</h1>
-                <p class="mt-6 max-w-xl text-base leading-7 text-slate-600">Kenali pilihan bazar di Bandung, lihat sewa per hari, dan pahami ketentuannya sebelum mulai berjualan.</p>
-                <a href="#bazar" class="button-primary mt-7">Jelajahi contoh bazar <svg aria-hidden="true" class="ml-3 size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-            </div>
-            <aside class="rounded-3xl bg-forest p-7 text-white sm:p-9" aria-labelledby="catatan-sewa">
-                <span aria-hidden="true" class="text-4xl text-amber-200">✳</span>
-                <h2 id="catatan-sewa" class="mt-5 text-2xl leading-snug font-medium">Mulai dari informasi<br>yang jelas.</h2>
-                <p class="mt-4 text-sm leading-6 text-emerald-50">Perhatikan harga per hari, jumlah hari wajib, dan biaya tambahan. Harga paket tidak selalu berarti bisa sewa satu hari.</p>
-                <p class="mt-7 border-t border-white/20 pt-5 text-xs leading-5 text-emerald-100">Contoh tampilan · Semua tanggal acara menggunakan WIB.</p>
-            </aside>
-        </div>
-    </section>
-    <section id="bazar" class="page-width scroll-mt-6" x-data="bazarBrowser(@js($screen['browse_events']), @js($screen['profile']), @js($screen['viewer']['role']), true)">
+    <section id="bazar" class="page-width scroll-mt-6 py-14 sm:py-20" x-data="bazarBrowser(@js($screen['browse_events']), @js($screen['profile']), @js($screen['viewer']['role']), true)">
         <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
             <div>
                 <p class="eyebrow text-slate-500">Ruang berjualan di sekitar Anda</p>
-                <h2 class="mt-2 text-2xl font-semibold tracking-tight text-forest" x-text="title">Bazar Mendatang</h2>
+                <h2 class="section-title mt-2" x-text="title">Bazar Mendatang</h2>
             </div>
             <a href="{{ route('catalog', $screen['persona']) }}" class="text-sm font-semibold text-emerald-800 underline underline-offset-4">Lihat Semua Bazar</a>
         </div>
@@ -66,5 +93,22 @@
                 @endforeach
             </nav>
         </details>
+    </section>
+    <section class="section-band">
+        <div class="page-width">
+            <p class="eyebrow text-emerald-700">Alur sederhana</p><h2 class="section-title mt-3">Dari kebutuhan usaha ke pilihan bazar.</h2>
+            <div class="mt-9 grid gap-5 md:grid-cols-3">
+                @foreach([['1', 'Lengkapi Usaha Saya', 'Ceritakan jenis produk, lokasi asal, tanggal, dan batas sewa harian Anda.'], ['2', 'Jelajahi pilihan bazar', 'Lihat pilihan di Beranda atau cari lebih banyak tempat di katalog.'], ['3', 'Periksa sebelum memilih', 'Baca ketentuan sewa dan pastikan kembali informasi kepada penyelenggara.']] as [$number, $title, $description])
+                    <div class="feature-panel"><span class="grid size-10 place-items-center rounded-xl bg-emerald-400 font-bold">{{ $number }}</span><h3 class="mt-6 text-lg font-bold">{{ $title }}</h3><p class="mt-3 text-sm leading-6 text-slate-500">{{ $description }}</p></div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <section class="page-width py-14 sm:py-20">
+        <div class="rounded-3xl bg-[#12171d] p-7 text-white shadow-xl sm:p-12">
+            <p class="eyebrow text-emerald-400">Ruang baru untuk usaha Anda</p><h2 class="mt-5 max-w-xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">Mulai dari bazar yang<br>Anda pahami.</h2>
+            <p class="mt-5 max-w-lg text-sm leading-7 text-stone-300">Kenali lokasi, jadwal, dan biaya stan. Temukan pilihan berikutnya untuk usaha Anda di Bandung.</p>
+            <div class="mt-7 flex flex-wrap gap-3"><a href="{{ route('catalog', $screen['persona']) }}" class="button-secondary">Buka Katalog Bazar →</a><a href="{{ route('profile', $screen['persona']) }}" class="inline-flex min-h-11 items-center rounded-full border border-white/25 px-5 py-3 text-sm font-semibold">Isi Usaha Saya</a></div>
+        </div>
     </section>
 @endsection

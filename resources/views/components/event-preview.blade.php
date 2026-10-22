@@ -1,8 +1,9 @@
 @props(['event', 'persona' => [], 'detailLink' => false, 'idPrefix' => '', 'distance' => false, 'reasons' => false])
-<x-card :heading-id="'judul-'.$idPrefix.$event['id']">
-    <div class="mb-5 flex items-center justify-between gap-2">
-        <span class="eyebrow text-emerald-800">{{ $event['location']['label'] }}</span>
+<x-card class="event-card" :heading-id="'judul-'.$idPrefix.$event['id']">
+    <div class="event-cover cover-{{ crc32($event['id']) % 4 }}">
+        <span class="cover-label">{{ $event['categories'][0] ?? 'Bazar Bandung' }}</span>
         <x-example-badge />
+        <span class="cover-location">{{ $event['location']['label'] }}</span>
     </div>
     <p class="text-sm text-slate-600">{{ $event['date_label'] }}</p>
     <h3 id="judul-{{ $idPrefix.$event['id'] }}" class="mt-2 text-xl font-semibold tracking-tight text-forest">{{ $event['name'] }}</h3>
