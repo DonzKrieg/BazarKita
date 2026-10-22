@@ -42,3 +42,9 @@ Tanpa JavaScript, katalog dan detail tetap dapat dibaca; Beranda menampilkan tig
 Tes utama berada di `tests/Browser/browse.spec.js` dan `tests/Feature/BrowseFrontendTest.php`. Screenshot hasil lokal berada di `test-results` (diabaikan Git). Browser lokal memakai Chromium melalui `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium`.
 
 T05 menyelesaikan demonstrasi frontend R5–R8, R10 serta P06/P07/P08/P09/P11/P13/P14 sesuai lingkupnya. Integrasi sumber, penyimpanan laporan, lokasi nyata, aturan produksi, dan otorisasi tetap menunggu backend. T06 (Tersimpan dan Bandingkan) belum dikerjakan.
+
+## Perbaikan layout responsif
+
+Filter katalog menempatkan petunjuk di bawah input agar baris kontrol sejajar. Tombol Hapus filter berada di baris aksi tersendiri. Jarak dan dua alasan pilihan kini berada di dalam kartu, sehingga tinggi kartu mencakup seluruh informasinya dan tidak menimpa baris berikutnya.
+
+Di bawah 1024 piksel, navigasi memakai tombol hamburger dengan menu vertikal. Tombol mendukung keyboard, aria-expanded/aria-controls, dan Escape mengembalikan fokus. Desktop tetap memakai navigasi sejajar. Tanpa JavaScript, tautan navigasi tetap tampil. Pengujian tambahan di `tests/Browser/responsive-layout.spec.js` memeriksa posisi kontrol, batas kartu, jarak antarkartu, serta buka/tutup dan perubahan ukuran menu.

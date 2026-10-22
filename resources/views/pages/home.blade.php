@@ -42,10 +42,7 @@
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                 @foreach ($screen['browse_events'] as $event)
                     <div x-show="visible(@js($event['id']))" x-bind:style="{ order: selected.findIndex(event => event.id === @js($event['id'])) }" @if($loop->index >= 3) x-cloak @endif>
-                        <x-event-preview :event="$event" :persona="$screen['persona']" :detail-link="true" />
-                        <ul x-show="!fallback" x-cloak class="mt-3 space-y-1 text-sm text-emerald-800" aria-label="Alasan pilihan">
-                            <li>Jenis produk diterima</li><li>Sewa sesuai batas harian Anda</li>
-                        </ul>
+                        <x-event-preview :event="$event" :persona="$screen['persona']" :detail-link="true" :distance="true" :reasons="true" />
                     </div>
                 @endforeach
             </div>

@@ -2,7 +2,7 @@
 
 ## Navigasi contoh
 
-Empat menu utama selalu tersedia: Beranda (/), Katalog Bazar (/events), Tersimpan (/me/saved-events), dan Usaha Saya (/me/profile). Menu aktif memiliki aria-current=page. Mulai lebar 1024 piksel, menu sejajar dengan logo dan akses akun dalam satu navbar. Pada ponsel, menu tersusun dua kolom di dalam header agar semua tujuan tetap terlihat.
+Empat menu utama selalu tersedia: Beranda (/), Katalog Bazar (/events), Tersimpan (/me/saved-events), dan Usaha Saya (/me/profile). Menu aktif memiliki aria-current=page. Mulai lebar 1024 piksel, menu sejajar dengan logo dan akses akun dalam satu navbar. Di bawah 1024 piksel, tombol hamburger membuka menu vertikal di header. Tombol memiliki aria-expanded/aria-controls; Escape menutup menu dan mengembalikan fokus. Tanpa JavaScript, tautan menu tetap terlihat.
 
 Identitas contoh dipilih melalui query as=guest/user/admin. Query ini hanya memilih fixture; bukan sesi, autentikasi, atau otorisasi. Seluruh layar berlabel Contoh. Tidak ada password atau data pengguna nyata.
 
@@ -64,3 +64,5 @@ Halaman /contoh/komponen memuat contoh interaktif dan daftar istilah untuk pengu
 | fetch error | Informasi belum berhasil dimuat |
 
 Biaya wajib, kewajiban paket, pembatalan, dan ketidakpastian harga tidak boleh ditempatkan hanya di panel tertutup. Tidak ada menu rekomendasi terpisah atau kalkulator.
+
+Filter katalog memakai `hintAfter` pada form-field agar label dan input sejajar, dengan petunjuk di bawah input. Jarak dan alasan pilihan menjadi bagian dari event-preview melalui prop `distance`/`reasons`, sehingga tidak melampaui tinggi kartu.

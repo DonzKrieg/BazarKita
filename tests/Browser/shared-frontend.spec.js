@@ -1,7 +1,17 @@
 import { test, expect } from '@playwright/test';
 
+async function openMenu(page) {
+    if (page.viewportSize().width >= 1024) return;
+    const toggle = page.locator('button[aria-controls="main-navigation"]');
+    await expect(toggle).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', /^(true|false)$/);
+    if (await toggle.getAttribute('aria-expanded') === 'false') await toggle.click();
+    await expect(page.getByRole('navigation', { name: 'Menu utama' })).toBeVisible();
+}
+
 test('four menus preserve example identity and login destination', async ({ page }, testInfo) => {
     await page.goto('/');
+    await openMenu(page);
     const nav = page.getByRole('navigation', { name: 'Menu utama' });
     await expect(nav.getByRole('link')).toHaveText(['Beranda', 'Katalog Bazar', 'Tersimpan', 'Usaha Saya']);
     await expect(nav.getByRole('link', { name: 'Beranda', exact: true })).toHaveAttribute('aria-current', 'page');
@@ -15,6 +25,7 @@ test('four menus preserve example identity and login destination', async ({ page
     }
 
 
+    await openMenu(page);
     await nav.getByRole('link', { name: 'Tersimpan', exact: true }).click();
     await expect(page).toHaveURL(/\/login\?next=saved$/);
     await page.getByText('Navigasi contoh tanpa mengisi form', { exact: true }).click();
@@ -23,11 +34,14 @@ test('four menus preserve example identity and login destination', async ({ page
     await expect(page.getByText('Sudah berakhir', { exact: true })).toBeVisible();
 
     for (const name of ['Usaha Saya', 'Katalog Bazar', 'Beranda', 'Tersimpan']) {
+        await openMenu(page);
         await nav.getByRole('link', { name, exact: true }).click();
+        await openMenu(page);
         await expect(nav.getByRole('link', { name, exact: true })).toHaveAttribute('aria-current', 'page');
         await expect(page).toHaveURL(/as=user/);
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
+    if (page.viewportSize().width < 1024) await page.getByRole('button', { name: 'Tutup menu utama' }).click();
     await page.screenshot({ path: testInfo.outputPath('saved-navigation.png'), fullPage: true });
     await page.getByRole('button', { name: 'Keluar', exact: true }).click();
     const dialog = page.getByRole('dialog');
@@ -39,6 +53,7 @@ test('four menus preserve example identity and login destination', async ({ page
     await page.getByRole('button', { name: 'Keluar', exact: true }).click();
     await dialog.getByRole('link', { name: 'Keluar dari contoh' }).click();
     await expect(page.getByRole('link', { name: 'Masuk', exact: true })).toBeVisible();
+    await openMenu(page);
     await nav.getByRole('link', { name: 'Usaha Saya', exact: true }).click();
     await expect(page).toHaveURL(/\/login\?next=profile$/);
     await page.getByText('Navigasi contoh tanpa mengisi form', { exact: true }).click();

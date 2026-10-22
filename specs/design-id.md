@@ -166,4 +166,4 @@ Properti berikut adalah aturan yang harus diuji, bukan hasil uji yang sudah lulu
 Simpan test ID, property ID, requirement/AC, input atau seed, hasil, dan bukti yang relevan. Seluruh R1–R15 tercakup oleh tabel ini; verifikasi lengkap dilakukan sebelum rilis.
 ## Penyederhanaan navigasi dan lokasi usaha
 
-Pada layar lebar (mulai 1024 piksel), empat menu utama berada sejajar dengan logo dan akses akun dalam satu navbar. Pada layar sempit, menu tetap di header dan membungkus ke baris berikutnya agar mudah disentuh. Lokasi asal cukup diisi sebagai kecamatan/kota. Pengguna tidak mengisi lintang/bujur; penentuan koordinat dan perhitungan jarak nyata menunggu integrasi lokasi.
+Pada layar lebar (mulai 1024 piksel), empat menu utama berada sejajar dengan logo dan akses akun dalam satu navbar. Pada layar sempit, tombol hamburger di header membuka menu vertikal; Escape menutupnya dan mengembalikan fokus. Tanpa JavaScript, tautan navigasi tetap tersedia. Lokasi asal cukup diisi sebagai kecamatan/kota. Pengguna tidak mengisi lintang/bujur; penentuan koordinat dan perhitungan jarak nyata menunggu integrasi lokasi.
