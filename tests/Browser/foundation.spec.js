@@ -11,7 +11,7 @@ test('P18: layout, keyboard and Alpine work with local assets', async ({ page },
     await page.goto('/');
     await expect(page.locator('html')).toHaveAttribute('lang', 'id');
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(250, 249, 246)');
-    await expect(page.locator('article')).toHaveCount(3);
+    await expect(page.locator('article:visible')).toHaveCount(3);
 
     await page.keyboard.press('Tab');
     await expect(page.getByRole('link', { name: 'Lewati ke konten' })).toBeFocused();
@@ -54,6 +54,6 @@ test('P20: screen states and retry links are usable', async ({ page }) => {
         await expect(page.locator('#bazar').getByText(title, { exact: true })).toBeVisible();
         await expect(page.locator('article')).toHaveCount(0);
         await page.getByRole('link', { name: state === 'error' ? 'Coba lagi' : 'Kembali ke contoh bazar', exact: true }).click();
-        await expect(page.locator('article')).toHaveCount(3);
+        await expect(page.locator('article:visible')).toHaveCount(3);
     }
 });

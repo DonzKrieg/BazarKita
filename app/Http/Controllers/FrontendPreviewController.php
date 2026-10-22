@@ -13,7 +13,7 @@ class FrontendPreviewController extends Controller
         $screen = $this->screen($request);
         $fixtures = require resource_path('fixtures/frontend.php');
         $screen['profile'] = $fixtures['profiles']['complete'];
-        $screen['events'] = $screen['state'] === 'ready' ? array_slice($screen['events'], 0, 3) : [];
+        $screen['events'] = $screen['state'] === 'ready' ? array_slice($screen['browse_events'], 0, 3) : [];
 
         return view('pages.home', compact('screen'));
     }
@@ -21,10 +21,21 @@ class FrontendPreviewController extends Controller
     public function catalog(Request $request): View
     {
         $screen = $this->screen($request);
-        // Fixed examples only; catalog filtering and business rules belong to later tasks.
-        $screen['events'] = array_slice($screen['events'], 0, 3);
+        $screen['events'] = require resource_path('fixtures/browse.php');
 
         return view('pages.catalog', compact('screen'));
+    }
+
+    public function detail(Request $request, string $event): View
+    {
+        $screen = $this->screen($request);
+        $events = require resource_path('fixtures/browse.php');
+        $selected = collect($events)->firstWhere('id', $event);
+        abort_unless($selected, 404);
+        $cutoff = (new \DateTimeImmutable($screen['meta']['reference_date'].' 00:00:00', new \DateTimeZone('Asia/Jakarta')))->modify('-7 days');
+        $stale = ! $selected['source']['checked_at'] || new \DateTimeImmutable($selected['source']['checked_at']) < $cutoff;
+
+        return view('pages.event', ['screen' => $screen, 'event' => $selected, 'stale' => $stale]);
     }
 
     public function saved(Request $request): View|RedirectResponse
@@ -98,6 +109,8 @@ class FrontendPreviewController extends Controller
             'viewer' => $fixtures['viewers'][$persona],
             'persona' => $persona === 'guest' ? [] : ['as' => $persona],
             'events' => $fixtures['events'],
+            'browse_events' => require resource_path('fixtures/browse.php'),
+            'profile' => $fixtures['profiles']['complete'],
             'message' => $fixtures['states'][$state],
         ];
     }

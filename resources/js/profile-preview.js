@@ -35,7 +35,7 @@ export default (fixture, role) => ({
         this.errors = {}; this.message = '';
     },
     updateSummary() {
-        this.summary = Object.keys(validateProfile(this.form)).length ? 'Profil contoh belum lengkap. Lengkapi Usaha Saya untuk mencoba pilihan personal pada tahap berikutnya.' : `${this.form.category} · ${this.form.location} · ${this.form.radius} km · Rp${Number(this.form.rent).toLocaleString('id-ID')}/hari · ${this.form.start} s.d. ${this.form.end} (WIB)`;
+        this.summary = Object.keys(validateProfile(this.form)).length ? 'Profil contoh belum lengkap. Lengkapi Usaha Saya untuk mencoba pilihan bazar.' : `${this.form.category} · ${this.form.location} · ${this.form.radius} km · Rp${Number(this.form.rent).toLocaleString('id-ID')}/hari · ${this.form.start} s.d. ${this.form.end} (WIB)`;
     },
     incomplete() {
         this.form = blank(); this.errors = {}; this.message = 'Contoh profil belum lengkap. Isi lima kelompok wajib di bawah.';
