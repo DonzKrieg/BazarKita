@@ -2,10 +2,21 @@
 @section('title', 'Katalog Bazar — BazarKita')
 @section('content')
 <section class="page-width py-10" x-data="bazarBrowser(@js($screen['browse_events']), @js($screen['profile']), @js($screen['viewer']['role']))">
-    <p class="eyebrow text-emerald-800">Bandung & sekitarnya</p>
-    <h1 class="mt-3 text-3xl font-semibold text-forest">Katalog Bazar</h1>
-    <p class="mt-4 leading-7 text-slate-600">Semua bazar aktif contoh, termasuk yang tidak tampil di Beranda. Acuan tanggal contoh: 1 November 2026 (WIB).</p>
-    <form class="mt-6 grid gap-4 rounded-xl border border-stone-200 bg-white p-5 sm:grid-cols-2 lg:grid-cols-3" @submit.prevent novalidate>
+    <div class="grid items-center gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+        <div>
+            <span class="status-chip">● Jelajahi Bandung & sekitarnya</span>
+            <h1 class="hero-title mt-4">Katalog Bazar</h1>
+            <p class="mt-5 max-w-2xl leading-7 text-slate-500">Temukan tempat untuk usaha Anda. Saring tanggal, lokasi, dan sewa harian, lalu baca ketentuan sebelum memilih.</p>
+            <div class="mt-5 flex flex-wrap gap-2"><span class="status-chip">✓ Harga per hari</span><span class="status-chip">✓ Sumber informasi</span><span class="status-chip">✓ Ketentuan sewa</span></div>
+        </div>
+        <aside class="hero-preview" aria-label="Panduan katalog">
+            <p class="eyebrow text-emerald-700">Lebih banyak pilihan</p>
+            <p class="mt-4 text-3xl font-bold tracking-tight">{{ count($screen['events']) }} bazar contoh</p>
+            <p class="mt-3 text-sm leading-6 text-slate-500">Termasuk bazar di luar tiga pilihan Beranda. Informasi yang belum pasti dipisahkan agar mudah Anda periksa.</p>
+            <p class="mt-5 border-t border-stone-100 pt-4 text-xs text-slate-500">Acuan tanggal contoh: 1 November 2026 (WIB).</p>
+        </aside>
+    </div>
+    <form class="mt-9 grid gap-5 rounded-3xl border border-stone-200/80 bg-white p-5 shadow-sm sm:p-7 sm:grid-cols-2 lg:grid-cols-3" @submit.prevent novalidate>
         <x-form-field :hint-after="true" id="search" label="Nama atau tempat" x-model="query" type="search" />
         <x-form-field :hint-after="true" id="category" label="Jenis produk" type="select" x-model="category" :options="['' => 'Semua jenis', 'Makanan' => 'Makanan', 'Minuman' => 'Minuman', 'Kerajinan' => 'Kerajinan']" />
         <x-form-field :hint-after="true" id="budget" label="Batas sewa per hari (Rp)" type="number" min="0" step="1" hint="Kosong: semua harga. Nol: sewa gratis." x-model="budget" />

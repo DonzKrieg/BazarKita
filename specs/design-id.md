@@ -167,3 +167,9 @@ Simpan test ID, property ID, requirement/AC, input atau seed, hasil, dan bukti y
 ## Penyederhanaan navigasi dan lokasi usaha
 
 Pada layar lebar (mulai 1024 piksel), empat menu utama berada sejajar dengan logo dan akses akun dalam satu navbar. Pada layar sempit, tombol hamburger di header membuka menu vertikal; Escape menutupnya dan mengembalikan fokus. Tanpa JavaScript, tautan navigasi tetap tersedia. Lokasi asal cukup diisi sebagai kecamatan/kota. Pengguna tidak mengisi lintang/bujur; penentuan koordinat dan perhitungan jarak nyata menunggu integrasi lokasi.
+
+## Arah visual berdasarkan referensi pengguna
+
+Desain memakai latar putih hangat, judul tebal berjarak rapat, aksen emerald, navbar gelap berbentuk pil, tombol membulat, dan kartu bazar dengan header gradasi. Beranda disusun sebagai hero dua kolom, empat panel penjelasan, pilihan bazar, tiga langkah penggunaan, dan panel ajakan bertindak gelap. Katalog memakai hero ringkas dengan ringkasan contoh, form filter yang sejajar, dan grid kartu. Footer memuat navigasi, konteks Bandung/WIB, serta penjelasan data contoh.
+
+Referensi visual tidak mengubah requirement fitur: menu utama tetap Beranda, Katalog Bazar, Tersimpan, dan Usaha Saya. Konten berfokus pada harga sewa harian dan ketentuan paket. Tidak menambahkan kalkulator impas, skor yang ditampilkan kepada pengguna, testimoni rekaan, atau klaim hasil usaha. Halaman Bandingkan tetap mengikuti lingkup T06. Header tetap memakai hamburger di bawah 1024 piksel dan navigasi tersedia tanpa JavaScript.
